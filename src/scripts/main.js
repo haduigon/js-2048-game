@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const Game = require('../modules/Game.class');
+const Game = require("../modules/Game.class");
 
 const game = new Game([
   [0, 0, 0, 0],
@@ -9,32 +9,32 @@ const game = new Game([
   [0, 0, 0, 0],
 ]);
 
-const startButton = document.getElementById('start-button');
+const startButton = document.getElementById("start-button");
 
-startButton.addEventListener('click', () => {
-  if (game.getStatus() === 'idle') {
+startButton.addEventListener("click", () => {
+  if (game.getStatus() === "idle") {
     game.start();
   } else {
     game.restart();
   }
 });
 
-window.addEventListener('keyup', handleKey);
+window.addEventListener("keyup", handleKey);
 
 function handleKey(action) {
-  if (action.code === 'ArrowUp') {
+  if (action.code === "ArrowUp") {
     game.moveUp();
   }
 
-  if (action.code === 'ArrowDown') {
+  if (action.code === "ArrowDown") {
     game.moveDown();
   }
 
-  if (action.code === 'ArrowLeft') {
+  if (action.code === "ArrowLeft") {
     game.moveLeft();
   }
 
-  if (action.code === 'ArrowRight') {
+  if (action.code === "ArrowRight") {
     game.moveRight();
   }
 }

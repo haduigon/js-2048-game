@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 class Game {
   constructor(
@@ -11,14 +11,14 @@ class Game {
   ) {
     this.board = initialState;
     this.score = 0;
-    this.status = 'idle';
-    this.cells = document.getElementsByClassName('field-row');
-    this.scoreElement = document.getElementsByClassName('game-score');
+    this.status = "idle";
+    this.cells = document.getElementsByClassName("field-row");
+    this.scoreElement = document.getElementsByClassName("game-score");
     this.count = 0;
   }
 
   moveLeft() {
-    if (this._checkNextStep(this.board, 'left')) {
+    if (this._checkNextStep(this.board, "left")) {
       for (let row = 0; row <= this.board.length - 1; row++) {
         this._compress(this.board[row]);
         this._merge(this.board[row]);
@@ -30,7 +30,7 @@ class Game {
   }
 
   moveRight() {
-    if (this._checkNextStep(this.board, 'right')) {
+    if (this._checkNextStep(this.board, "right")) {
       for (let row = 0; row <= this.board.length - 1; row++) {
         this._compressDown(this.board[row]);
         this._mergeDown(this.board[row]);
@@ -42,7 +42,7 @@ class Game {
   }
 
   moveUp() {
-    if (this._checkNextStep(this.board, 'up')) {
+    if (this._checkNextStep(this.board, "up")) {
       for (let col = 0; col < this.board[0].length; col++) {
         const column = this.board.map((row) => row[col]);
 
@@ -61,7 +61,7 @@ class Game {
   }
 
   moveDown() {
-    if (this._checkNextStep(this.board, 'down')) {
+    if (this._checkNextStep(this.board, "down")) {
       for (let col = 0; col < this.board[0].length; col++) {
         const column = this.board.map((row) => row[col]);
 
@@ -124,16 +124,16 @@ class Game {
     const copyBoard = copy.map((subArray) => subArray.slice());
 
     switch (direction) {
-      case 'down':
+      case "down":
         this._checkMoveDown(copyBoard);
         break;
-      case 'up':
+      case "up":
         this._checkMoveUp(copyBoard);
         break;
-      case 'left':
+      case "left":
         this._checkMoveLeft(copyBoard);
         break;
-      case 'right':
+      case "right":
         this._checkMoveRight(copyBoard);
         break;
       default:
@@ -209,7 +209,7 @@ class Game {
   }
 
   start() {
-    if (this.status === 'idle') {
+    if (this.status === "idle") {
       this.board[Math.floor(Math.random() * 4)][Math.floor(Math.random() * 4)] =
         2;
 
@@ -221,7 +221,7 @@ class Game {
       this.start();
     }
 
-    this.status = 'playing';
+    this.status = "playing";
     this._renderBoard();
   }
 
@@ -240,6 +240,8 @@ class Game {
   }
 
   restart() {
+    this.score = 0;
+
     if (this.count > 0) {
       this.board = [
         [0, 0, 0, 0],
@@ -247,7 +249,7 @@ class Game {
         [0, 0, 0, 0],
         [0, 0, 0, 0],
       ];
-      this.status = 'playing';
+      this.status = "playing";
 
       this.board[Math.floor(Math.random() * 4)][Math.floor(Math.random() * 4)] =
         2;
@@ -277,8 +279,8 @@ class Game {
   }
 
   _renderBoard() {
-    const startButton = document.getElementById('start-button');
-    const messageContainer = document.getElementById('message-container');
+    const startButton = document.getElementById("start-button");
+    const messageContainer = document.getElementById("message-container");
 
     for (let line = 0; line <= this.board.length - 1; line++) {
       for (let col = 0; col <= this.board[line].length - 1; col++) {
@@ -288,29 +290,29 @@ class Game {
           `field-cell field-cell--${this.cells[line].cells[col].innerText}`;
 
         if (this.board[line][col] === 0) {
-          this.cells[line].cells[col].innerText = '';
+          this.cells[line].cells[col].innerText = "";
         }
       }
     }
 
-    if (this.status === 'playing') {
-      startButton.innerText = 'Restart';
-      startButton.classList.add('restart');
+    if (this.status === "playing") {
+      startButton.innerText = "Restart";
+      startButton.classList.add("restart");
     }
 
-    if (this.status === 'playing') {
-      messageContainer.children[2].classList.add('hidden');
-      messageContainer.children[1].classList.add('hidden');
-      messageContainer.children[0].classList.add('hidden');
+    if (this.status === "playing") {
+      messageContainer.children[2].classList.add("hidden");
+      messageContainer.children[1].classList.add("hidden");
+      messageContainer.children[0].classList.add("hidden");
     }
 
     if (this.board.some((row) => row.some((cell) => cell === 2048))) {
-      messageContainer.children[1].classList.remove('hidden');
+      messageContainer.children[1].classList.remove("hidden");
     }
 
     if (!this._checkLoose()) {
-      this.status = 'lose';
-      messageContainer.children[0].classList.remove('hidden');
+      this.status = "lose";
+      messageContainer.children[0].classList.remove("hidden");
     }
     this.scoreElement[0].innerText = this.score;
   }

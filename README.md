@@ -74,7 +74,7 @@ npm start
 
 # Reflection
 
-Creating a 2048 game in vanilla JavaScript was a challenging and rewarding task that improved my algorithmic and OOP skills. Setting up a dynamic 4x4 grid and implementing cell movements and merges based on arrow key inputs enhanced my coding and problem-solving abilities.
+Creating a 2048 game in vanilla JavaScript was a challenging and rewarding task that improved my algorithmic and OOP skills. Setting up a dynamic 4x4 grid and implementing cell movements and mergers based on arrow key inputs enhanced my coding and problem-solving abilities.
 
 Managing the game state, including scores, win/loss detection, and real-time UI updates, taught me efficient DOM manipulation. Adding user-friendly features like Start and Restart buttons and saving high scores in local storage made the game more engaging.
 
